@@ -1,13 +1,201 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+  /* font family */
+  --fontMain: 'Roboto', sans-serif;
+  --fontAccent: 'Poor Story', cursive;
+  --spacing1: 2px;
+  --spacing2: 3px;
+  --spacing4: 4px;
+
+  /* colors */
+  --clr-prim1: #d3fafc;
+  --clr-prim2: #a8f5f9;
+  --clr-prim3: #7cf1f7;
+  --clr-prim4: #51ecf4;
+  --clr-prim5: #25e7f1;
+  --clr-prim6: #1eb9c1;
+  --clr-prim7: #168b91;
+  --clr-prim8: #0f5c60;
+  --clr-prim9: #072e30;
+  --clr-white: #f8f8f8;
+  --clr-grey1: #e6e6e6;
+  --clr-grey2: #cccccc;
+  --clr-grey3: #b3b3b3;
+  --clr-grey4: #808080;
+  --clr-grey5: #666666;
+  --clr-grey6: #4d4d4d;
+  --clr-grey7: #333333;
+  --clr-black: #222;
+  --background-clr: white;
+  /* shadow */
+  --shadow-light: 5px 5px 10px var(--clr-grey1), -5px 5px 10px var(--clr-grey1),
+    5px -5px 10px var(--clr-grey1);
+  --shadow-mid: 5px 5px 10px var(--clr-grey2), -5px 5px 10px var(--clr-grey2),
+    5px -5px 10px var(--clr-grey2);
+  --shadow-dark: 5px 5px 10px var(--clr-grey3), -5px 5px 10px var(--clr-grey3),
+    5px -5px 10px var(--clr-grey3);
+
+  /* extra */
+  --radius: 1em;
+  --transition: all 0.5s ease-in-out;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--background-clr);
+  font-family: var(--fontMain);
+  font-size: 16px;
+  color: var(--clr-black);
+  font-size: 1rem;
+  font-family: var(--fontMain);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fontAccent);
+  text-transform: capitalize;
+  text-align: center;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+a {
+  text-decoration: none;
+  color: var(--clr-grey3);
+  text-transform: uppercase;
+  letter-spacing: var(--spacing1);
+}
+ul {
+  list-style-type: none;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.section-center {
+  width: 95vw;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.loading {
+  display: block;
+  margin: 1rem auto;
+  color: var(--clr-black);
+}
+
+/* page css */
+.section-center h1 {
+  width: fit-content;
+  margin: 1rem auto 4rem auto;
+  position: relative;
+}
+.section-center h1::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  bottom: -10px;
+  width: 80%;
+  height: 5px;
+  background-color: var(--clr-prim7);
+  border-radius: var(--radius);
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+.search-form .search-input {
+  padding: 0.3em 0.5em;
+  font-size: 1.2rem;
+  color: var(--clr-black);
+  border: none;
+  border-bottom: 2px solid var(--clr-prim7);
+  border-right: 2px solid var(--clr-prim7);
+}
+.search-form .submitSearch-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--clr-prim7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5em;
+  cursor: pointer;
+}
+
+.photos {
+  margin-top: 5rem;
+}
+.photos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 0 0.5rem;
+  gap: 1rem;
+  margin-top: 5rem;
+}
+
+.photo-container {
+  height: 17.5rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+.photo {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.photo-info {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0 0.7rem;
+  transform: translateY(100%);
+  transition: var(--transition);
+}
+.photo-container:hover .photo-info {
+  transform: translateY(0);
+}
+.photo-container:hover {
+  box-shadow: var(--shadow-dark);
+}
+.photo-info h4 {
+  color: var(--clr-prim1);
+}
+.photo-info p {
+  color: var(--clr-prim1);
+}
+.photo-info .user-img {
+  width: 40px;
+  border-radius: 50%;
+  align-self: center;
 }
